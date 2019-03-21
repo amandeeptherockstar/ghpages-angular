@@ -1,0 +1,98 @@
+<h1 style="text-align: center">Followers Page</h1>
+<ul class="list-group mx-5">
+  <div
+    class="col-md-6 mx-auto list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+    *ngFor="let follower of followers"
+  >
+    <div class="flex-column">
+      {{ follower.login }}
+      <p><small>by Miguel de Cervantes</small></p>
+      <span class="badge badge-danger badge-pill">
+        <a
+          [routerLink]="['/profile', follower.login, follower.id]"
+          [queryParams]="{ page: 1, order: 'newest' }"
+        >
+          View Profile
+        </a>
+      </span>
+    </div>
+    <div class="image-parent">
+      <img
+        [src]="follower.avatar_url"
+        class="img-fluid"
+        alt="things"
+        width="200px"
+      />
+    </div>
+  </div>
+</ul>
+<!-- <ul class="list-group">
+    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <div class="flex-column">
+          Don Quixote
+          <p><small>by Miguel de Cervantes</small></p>
+          <span class="badge badge-info badge-pill"> 2 Copies in Stock</span>
+        </div>
+        <div class="image-parent">
+            <img src="..." class="img-fluid" alt="quixote">
+        </div>
+      </a>
+</ul> -->
+<!-- <div class="class" *ngFor="let follower of followers">
+
+
+
+  <div class="card-group">
+    <div class="card">
+      <img
+        class="card-img-top image-fluid"
+        width="200px"
+        [src]="follower.avatar_url"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ follower.login }}</h5>
+        <p class="card-text">
+          <a [routerLink]="['/profile', follower.login, follower.id]"
+            >Follower Profile</a
+          >
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+  </div>
+
+
+</div> -->
+
+<!-- <ul class="list-group">
+  <a
+    href="#"
+    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+  >
+    <div class="flex-column">
+      Don Quixote
+      <p><small>by Miguel de Cervantes</small></p>
+      <span class="badge badge-info badge-pill"> 2 Copies in Stock</span>
+    </div>
+    <div class="image-parent">
+      <img src="..." class="img-fluid" alt="quixote" />
+    </div>
+  </a>
+  <a
+    href="#"
+    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+  >
+    <div class="flex-column">
+      As I Lay Dying
+      <p><small>by William Faulkner</small></p>
+      <span class="badge badge-primary badge-pill"> 5 Copies in Stock</span>
+    </div>
+    <div class="image-parent">
+      <img src="..." class="img-fluid" alt="lay" />
+    </div>
+  </a>
+
+</ul> -->

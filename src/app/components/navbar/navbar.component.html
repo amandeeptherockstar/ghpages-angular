@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">Navbar</a>
+    <button
+      class="navbar-toggler"
+      [class.collapsed]="navbarCollapsed"
+      type="button"
+      (click)="onChangeNavbarCollapsed()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse animate"
+      [class.show]="navbarCollapsed"
+    >
+      <ul class="navbar-nav ml-auto">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" [routerLink]="['/']">
+            Home
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn()">
+          <a class="nav-link" [routerLink]="['/login']">Login</a>
+        </li>
+
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          *ngIf="decodedUser && decodedUser.admin"
+        >
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="decodedUser">
+          <a class="nav-link" [routerLink]="['/followers']">Followers</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="decodedUser">
+          <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+        </li>
+        <li
+          class="nav-item"
+          (click)="storage.removeToken()"
+          *ngIf="decodedUser"
+        >
+          <a class="nav-link" [routerLink]="['/login']">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

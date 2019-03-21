@@ -1,0 +1,65 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+  <div class="panel">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="form-group">
+          <label for="tbemail">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            (keyup)="emailChange(EMAIL)"
+            #EMAIL
+          />
+          <div
+            class="invalid-feedback"
+            [style.display]="email.touched && !email.valid ? 'block' : 'none'"
+          >
+            <div *ngIf="email.errors?.required">Email is required</div>
+            <div *ngIf="email.errors?.email">Invalid Email</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tbpassword">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            (keyup)="passwordChange(PASSWORD)"
+            #PASSWORD
+          />
+          <div
+            class="invalid-feedback"
+            [style.display]="
+              password.touched && !password.valid ? 'block' : 'none'
+            "
+          >
+            <div *ngIf="password.errors?.required">Password is required</div>
+            <div *ngIf="password.touched && password.errors?.minlength">
+              Password Must have atleast
+              {{ password.errors.minlength?.requiredLength }} characters
+            </div>
+            <div *ngIf="password.errors?.maxlength">
+              Password shouldn't be more than
+              {{ password.errors?.maxlength.requiredLength }} characters
+            </div>
+          </div>
+        </div>
+        <div
+          class="invalid-feedback"
+          [style.display]="form.touched && form.invalid ? 'block' : 'none'"
+        >
+          <div *ngIf="form.errors?.emailNotFound">
+            Email Does not Exist
+          </div>
+          <div *ngIf="form.errors?.wrongPassword">
+            Wrong Password
+          </div>
+        </div>
+        <button class="btn btn-primary" [disabled]="!form.valid" type="submit">
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
